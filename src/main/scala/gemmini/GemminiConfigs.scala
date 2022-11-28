@@ -1,10 +1,12 @@
 
+package gemmini
+
 import scala.math.{max, pow, sqrt}
 import chisel3._
 import chisel3.util._
 import freechips.rocketchip.tile._
 
-sealed abstract trait GemminiMemCapacity
+sealed trait GemminiMemCapacity
 case class CapacityInKilobytes(kilobytes: Int) extends GemminiMemCapacity
 case class CapacityInMatrices(matrices: Int) extends GemminiMemCapacity
 

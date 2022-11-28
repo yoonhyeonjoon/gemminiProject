@@ -1,6 +1,8 @@
 // A simple type class for Chisel datatypes that can add and multiply. To add your own type, simply create your own:
 //     implicit MyTypeArithmetic extends Arithmetic[MyType] { ... }
 
+package gemmini
+
 import chisel3._
 import chisel3.util._
 import hardfloat._
@@ -64,6 +66,7 @@ object Arithmetic {
 
       override def withWidthOf(t: UInt) = self.asTypeOf(t)
 
+      //overflow를 체크하는 코드
       override def clippedToWidthOf(t: UInt) = {
         val sat = ((1 << (t.getWidth-1))-1).U
         Mux(self > sat, sat, self)(t.getWidth-1, 0)
